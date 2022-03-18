@@ -11,11 +11,12 @@
         "**/bin": true,
         "**/obj": true,
         "**/testrun": true,
+        "**/TestResults": true,
     },
 
     "typescript.tsdk": "node_modules\\typescript\\lib",
 
     "coverage-gutters.coverageFileNames": [
-        "coverage.lcov.info"
+        "**/coverage.lcov.info"
     ],
 }

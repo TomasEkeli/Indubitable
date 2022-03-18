@@ -16,10 +16,11 @@
     <PackageReference Include="NUnit" Version="3.13.2" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.0.0" />
     <PackageReference Include="coverlet.collector" Version="3.1.0" />
+    <PackageReference Include="shouldly" Version="4.0.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\lib\dotnet\dotnet.csproj" />
+    <ProjectReference Include="..\..\..\src\lib\Dotnet\Dotnet.csproj" />
   </ItemGroup>
 
 </Project>
