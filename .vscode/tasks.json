@@ -36,6 +36,31 @@
                 "${workspaceFolder}/src/cli/cli.csproj"
             ],
             "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "watch test",
+            "command": "dotnet",
+            "type": "process",
+            "isTestCommand": true,
+            "options": {
+                "cwd": "${workspaceFolder}/tests/lib/dotnet.tests",
+                "env": {
+                    "DOTNET_CLI_TELEMETRY_OPTOUT": "1"
+                }
+            },
+            "args": [
+                "watch",
+                "test",
+                "/p:OutDir=../testrun",
+                "/p:CollectCoverage=true",
+                "/p:CoverletOutputFormat=lcov",
+                "/p:CoverletOutput=../TestResults/coverage.lcov.info"
+            ],
+            "group": "test",
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            }
         }
     ]
 }

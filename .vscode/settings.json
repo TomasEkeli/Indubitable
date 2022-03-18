@@ -1,0 +1,21 @@
+{
+    "files.exclude": {
+
+        "**/jspm_packages": true,
+        "**/node_modules": true,
+        "**/*.scss.d.ts": true,
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.DS_Store": true,
+        "**/out": true,
+        "**/bin": true,
+        "**/obj": true,
+        "**/testrun": true,
+    },
+
+    "typescript.tsdk": "node_modules\\typescript\\lib",
+
+    "coverage-gutters.coverageFileNames": [
+        "coverage.lcov.info"
+    ],
+}
