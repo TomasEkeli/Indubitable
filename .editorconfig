@@ -379,6 +379,12 @@ dotnet_diagnostic.RCS1037.severity = silent
 # missing xml comment
 dotnet_diagnostic.CS1591.severity = silent
 
+# make class static
+dotnet_diagnostic.RCS1102.severity = none
+
+# mark member static
+dotnet_diagnostic.CA1822.severity = silent
+
 # more lenient analyzers for tests
 [tests/**.cs]
 
