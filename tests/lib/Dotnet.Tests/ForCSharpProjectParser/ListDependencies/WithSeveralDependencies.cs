@@ -1,14 +1,14 @@
-namespace Dotnet.Tests.ForProjectReader.ListDependencies;
+namespace Dotnet.Tests.ForCSharpProjectParser.ListDependencies;
 
 public class WithSeveralDependencies
 {
-    IEnumerable<Dependency> _dependencies;
+    IEnumerable<ParsedDependency> _dependencies;
 
     [SetUp]
     public void Setup()
     {
-        var projectReader = new ProjectReader();
-        _dependencies = projectReader.ListDependencies(
+        var projectReader = new CSharpProjectFileParser();
+        _dependencies = projectReader.ParseDependencies(
 @"<Project Sdk=""Microsoft.NET.Sdk"">
 
   <PropertyGroup>

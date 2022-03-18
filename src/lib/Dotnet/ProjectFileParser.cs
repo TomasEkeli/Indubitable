@@ -2,13 +2,19 @@
 using System.Xml.Linq;
 
 namespace Dotnet;
-public class ProjectReader
+
+public interface IProjectFileParser
 {
-    public IEnumerable<Dependency> ListDependencies(string projectFileContents)
+    IEnumerable<ParsedDependency> ParseDependencies(string projectFileContents);
+}
+
+public class CSharpProjectFileParser : IProjectFileParser
+{
+    public IEnumerable<ParsedDependency> ParseDependencies(string projectFileContents)
     {
         if (string.IsNullOrWhiteSpace(projectFileContents))
         {
-            return Enumerable.Empty<Dependency>();
+            return Enumerable.Empty<ParsedDependency>();
         }
 
         try
@@ -20,7 +26,7 @@ public class ProjectReader
             return packageReferences
                 .Where(x => x.Attribute("Include") != null && x.Attribute("Version") != null)
                 .Select(packageReference =>
-                    new Dependency(
+                    new ParsedDependency(
                         packageReference.Attribute("Include")!.Value,
                         packageReference.Attribute("Version")!.Value
                     )
@@ -28,7 +34,7 @@ public class ProjectReader
         }
         catch (XmlException)
         {
-            return Enumerable.Empty<Dependency>();
+            return Enumerable.Empty<ParsedDependency>();
         }
     }
 }
