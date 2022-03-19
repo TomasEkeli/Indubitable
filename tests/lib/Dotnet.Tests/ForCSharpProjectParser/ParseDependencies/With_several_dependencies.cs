@@ -1,11 +1,11 @@
-namespace Dotnet.Tests.ForCSharpProjectParser.ParseDependencies;
+namespace Dotnet.Tests.For_CSharpProjectParser.ParseDependencies;
 
-public class WithSeveralDependencies
+public class With_several_dependencies
 {
     IEnumerable<ParsedDependency> _dependencies;
 
     [SetUp]
-    public void Setup()
+    public void Parse_a_project_xml_with_several_package_references()
     {
         var projectReader = new CSharpProjectFileParser();
         _dependencies = projectReader.ParseDependencies(
@@ -43,41 +43,47 @@ public class WithSeveralDependencies
     }
 
     [Test]
-    public void ThereAreSixDependencies() => _dependencies.Count().ShouldBe(6);
+    public void There_are_six_dependencies() => _dependencies.Count().ShouldBe(6);
 
     [Test]
-    public void DependsOnCoverletMsBuild() =>
+    public void Depends_on_coverlet_msbuild() =>
         _dependencies
             .Select(_ => _.Name)
             .ShouldContain("coverlet.msbuild");
 
     [Test]
-    public void DependsOnNUnit() =>
+    public void Depends_on_microsoft_net_test_sdk() =>
+        _dependencies
+            .Select(_ => _.Name)
+            .ShouldContain("Microsoft.NET.Test.Sdk");
+
+    [Test]
+    public void Depends_on_nunit() =>
         _dependencies
             .Select(_ => _.Name)
             .ShouldContain("NUnit");
 
     [Test]
-    public void DependsOnNUnit3TestAdapter() =>
+    public void Depends_on_nunit3_test_adapter() =>
         _dependencies
             .Select(_ => _.Name)
             .ShouldContain("NUnit3TestAdapter");
 
     [Test]
-    public void DependsOnCoverletCollector() =>
+    public void Depends_on_coverlet_collector() =>
         _dependencies
             .Select(_ => _.Name)
             .ShouldContain("coverlet.collector");
 
     [Test]
-    public void DependsOnShouldly() =>
+    public void Depends_on_shouldly() =>
         _dependencies
             .Select(_ => _.Name)
             .ShouldContain("shouldly");
 
     [Test]
-    public void DependsOnDotnetTestSdk() =>
+    public void Does_not_depend_on_a_package_that_is_not_in_the_project() =>
         _dependencies
             .Select(_ => _.Name)
-            .ShouldContain("Microsoft.NET.Test.Sdk");
+            .ShouldNotContain("will_not_be_returned");
 }

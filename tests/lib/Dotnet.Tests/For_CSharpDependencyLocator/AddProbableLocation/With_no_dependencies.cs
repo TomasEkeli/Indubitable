@@ -1,11 +1,11 @@
-namespace Dotnet.Tests.ForCSharpDependencyLocator.AddProbableLocation;
+namespace Dotnet.Tests.For_CSharpDependencyLocator.AddProbableLocation;
 
-public class ForNoDependencies
+public class With_no_dependencies
 {
     IEnumerable<DependencyWithLocation> _dependencies;
 
     [SetUp]
-    public void AddProbableLocationsToAnEmptyList()
+    public void Adding_probable_location_to_an_empty_list()
     {
         var locationLocator = new CSharpDependencyLocationLocator();
 
@@ -15,5 +15,5 @@ public class ForNoDependencies
     }
 
     [Test]
-    public void IsAnEmptyList() => _dependencies.Any().ShouldBeFalse();
+    public void Is_an_empty_list() => _dependencies.Any().ShouldBeFalse();
 }

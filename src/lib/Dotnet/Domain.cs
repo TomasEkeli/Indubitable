@@ -2,24 +2,18 @@ namespace Dotnet;
 
 public record ParsedDependency(string Name, string Version);
 
-public record DependencyWithLocation(string Name, string Version, Uri Location);
-
-public record DependencyWithLocationAndSource(
-    string Name,
-    string Version,
-    Uri Location,
-    Uri Source);
+public record DependencyWithLocation(string Name, string Version, Uri PackageResourceLocation);
 
 public record Dependency(
     string Name,
     string Version,
-    Uri PackagePage,
-    Uri ProjectWebSite,
-    Uri Source,
-    License License,
-    string LatestVersion,
-    DateTimeOffset VersionPublished,
-    DateTimeOffset LatestVersionPublished,
+    Uri PackageResourceLocation,
+    Uri? ProjectWebSite,
+    Uri? Source,
+    License? License,
+    string? LatestVersion,
+    DateTimeOffset? VersionPublished,
+    DateTimeOffset? LatestVersionPublished,
     IEnumerable<Owner> Owners,
     IEnumerable<Author> Authors);
 

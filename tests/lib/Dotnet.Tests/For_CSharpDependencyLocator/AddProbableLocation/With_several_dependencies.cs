@@ -1,11 +1,11 @@
-namespace Dotnet.Tests.ForCSharpDependencyLocator.AddProbableLocation;
+namespace Dotnet.Tests.For_CSharpDependencyLocator.AddProbableLocation;
 
-public class ForSeveralDependencies
+public class With_several_dependencies
 {
     IEnumerable<DependencyWithLocation> _dependencies;
 
     [SetUp]
-    public void AddProbableLocationsToAnEmptyList()
+    public void Add_probable_location_to_several_dependencies()
     {
         var locationLocator = new CSharpDependencyLocationLocator();
 
@@ -20,39 +20,33 @@ public class ForSeveralDependencies
     }
 
     [Test]
-    public void ThereAreThreeDependencies() => _dependencies.Count().ShouldBe(3);
+    public void There_are_three_dependencies() => _dependencies.Count().ShouldBe(3);
 
     [Test]
-    public void DidNotChangedName() => _dependencies.First().Name.ShouldBe("nunit");
-
-    [Test]
-    public void DidNotChangedVersion() => _dependencies.First().Version.ShouldBe("1.0.2");
-
-    [Test]
-    public void SetTheExpectedLocation() =>
+    public void Set_the_expected_location_on_nunit() =>
         _dependencies
             .First()
-            .Location
+            .PackageResourceLocation
             .ShouldBe(
                 new Uri("https://www.nuget.org/packages/nunit/1.0.2")
             );
 
     [Test]
-    public void SetsTheExpectedLocationOnShouldly() =>
+    public void Set_the_expected_location_on_shouldly() =>
         _dependencies
             .Skip(1)
             .First()
-            .Location
+            .PackageResourceLocation
             .ShouldBe(
                 new Uri("https://www.nuget.org/packages/shouldly/4.5.6")
             );
 
     [Test]
-    public void SetsTheExpectedLocationOnXunit() =>
+    public void Set_the_expected_location_on_xunit() =>
         _dependencies
             .Skip(2)
             .First()
-            .Location
+            .PackageResourceLocation
             .ShouldBe(
                 new Uri("https://www.nuget.org/packages/xunit/2.1.0")
             );

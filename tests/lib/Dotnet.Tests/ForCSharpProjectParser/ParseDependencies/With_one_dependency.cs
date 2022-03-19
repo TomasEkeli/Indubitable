@@ -1,10 +1,10 @@
-namespace Dotnet.Tests.ForCSharpProjectParser.ParseDependencies;
-public class WithOneDependency
+namespace Dotnet.Tests.For_CSharpProjectParser.ParseDependencies;
+public class With_one_dependency
 {
     IEnumerable<ParsedDependency> _dependencies;
 
     [SetUp]
-    public void Setup()
+    public void Parse_a_project_xml_with_one_package_reference()
     {
         var projectReader = new CSharpProjectFileParser();
         _dependencies = projectReader.ParseDependencies(
@@ -30,11 +30,15 @@ public class WithOneDependency
     }
 
     [Test]
-    public void ThereIsOneDependency() => _dependencies.Count().ShouldBe(1);
+    public void Has_one_dependency() => _dependencies.Count().ShouldBe(1);
 
     [Test]
-    public void TheDependencyIsDotnetTest() => _dependencies.Single().Name.ShouldBe("NUnit");
+    public void The_dependency_is_nunit() => _dependencies.Single().Name.ShouldBe("NUnit");
 
     [Test]
-    public void TheDependencyIsOfTheCorrectVersion() => _dependencies.Single().Version.ShouldBe("3.13.2");
+    public void The_dependency_version_is_correct() =>
+        _dependencies
+            .Single()
+            .Version
+            .ShouldBe("3.13.2");
 }

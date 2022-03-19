@@ -1,16 +1,16 @@
-namespace Dotnet.Tests.ForCSharpProjectParser.ParseDependencies;
+namespace Dotnet.Tests.For_CSharpProjectParser.ParseDependencies;
 
-public class OfANonXmlString
+public class Of_a_non_xml_string
 {
     IEnumerable<ParsedDependency> _dependencies;
 
     [SetUp]
-    public void Setup()
+    public void Parse_a_string_that_is_not_xml()
     {
         var projectReader = new CSharpProjectFileParser();
         _dependencies = projectReader.ParseDependencies("<not xml, but starts and ends like it>");
     }
 
     [Test]
-    public void ThereAreNoDependencies() => _dependencies.Any().ShouldBeFalse();
+    public void Has_no_dependencies() => _dependencies.Any().ShouldBeFalse();
 }
