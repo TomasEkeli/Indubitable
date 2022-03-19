@@ -19,6 +19,6 @@
     "coverage-gutters.coverageFileNames": [
         "**/coverage.lcov.info"
     ],
-    "dotnet-test-explorer.testArguments": "--filter Category!=Integration /p:OutDir=../testrun /p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:CoverletOutput=TestResults/coverage.lcov.info",
+    "dotnet-test-explorer.testArguments": "--filter Category!=Integration /p:OutDir=../testrun /p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:CoverletOutput=./TestResults/coverage.lcov.info",
     "dotnet-test-explorer.testProjectPath": "tests/**/*.csproj"
 }
