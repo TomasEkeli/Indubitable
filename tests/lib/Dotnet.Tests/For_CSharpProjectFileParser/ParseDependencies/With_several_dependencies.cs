@@ -1,4 +1,4 @@
-namespace Dotnet.Tests.For_CSharpProjectParser.ParseDependencies;
+namespace Dotnet.Tests.For_CSharpProjectFileParser.ParseDependencies;
 
 public class With_several_dependencies
 {
