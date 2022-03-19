@@ -4,8 +4,14 @@ using NuGet.Protocol.Core.Types;
 
 namespace Dotnet;
 
-public class NugetOrgDataFetcher
+public class NugetOrgDataMetadataFetcher
 {
+    readonly INugetOrgData _nugetOrgData;
+
+    public NugetOrgDataMetadataFetcher(INugetOrgData nugetOrgData)
+    {
+        _nugetOrgData = nugetOrgData;
+    }
 
     public async Task<IEnumerable<DependencyWithMetadata>> FetchMetadataFor(
         List<DependencyWithLocation> dependencies,
@@ -26,16 +32,8 @@ public class NugetOrgDataFetcher
         CancellationToken cancellationToken
     )
     {
-        var cache = new SourceCacheContext();
-        var repository = Repository.Factory.GetCoreV3("https://api.nuget.org/v3/index.json");
-        var resource = await repository.GetResourceAsync<PackageMetadataResource>();
-
-        var packages = await resource.GetMetadataAsync(
+        var packages = await _nugetOrgData.FetchMetadataFor(
             dependency.Name,
-            true,
-            false,
-            cache,
-            NullLogger.Instance,
             cancellationToken
         );
 
@@ -59,16 +57,16 @@ public class NugetOrgDataFetcher
             .Select(author => new Author(author.Trim()));
 
         return new(
-            dependency.Name,
-            dependency.Version,
-            dependency.PackageResourceLocation,
-            package?.PackageDetailsUrl,
-            package?.LicenseUrl,
-            latestVersion?.Identity.Version.ToString(),
-            package?.Published,
-            latestVersion?.Published,
-            owners ?? Enumerable.Empty<Owner>(),
-            authors ?? Enumerable.Empty<Author>()
+            Name: dependency.Name,
+            Version: dependency.Version,
+            PackageResourceLocation: dependency.PackageResourceLocation,
+            ProjectWebSite: package?.PackageDetailsUrl,
+            LicenseUrl: package?.LicenseUrl,
+            LatestVersion: latestVersion?.Identity.Version.ToString(),
+            VersionPublished: package?.Published,
+            LatestVersionPublished: latestVersion?.Published,
+            Owners: owners ?? Enumerable.Empty<Owner>(),
+            Authors: authors ?? Enumerable.Empty<Author>()
         );
 
     }

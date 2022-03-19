@@ -4,3 +4,4 @@ global using System.Linq;
 global using NUnit.Framework;
 global using Shouldly;
 global using System.Threading.Tasks;
+global using NSubstitute;
