@@ -3,12 +3,7 @@ using System.Xml.Linq;
 
 namespace Dotnet;
 
-public interface IProjectFileParser
-{
-    IEnumerable<ParsedDependency> ParseDependencies(string projectFileContents);
-}
-
-public class CSharpProjectFileParser : IProjectFileParser
+public class CSharpProjectFileParser
 {
     public IEnumerable<ParsedDependency> ParseDependencies(string projectFileContents)
     {
