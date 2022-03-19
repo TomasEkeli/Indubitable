@@ -1,5 +1,3 @@
-using System.Buffers;
-
 namespace Dotnet;
 
 public record ParsedDependency(string Name, string Version);
