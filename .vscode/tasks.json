@@ -7,8 +7,6 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/src/cli/cli.csproj",
-                "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
             "problemMatcher": "$msCompile"
