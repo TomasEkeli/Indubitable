@@ -25,4 +25,12 @@
     <ProjectReference Include="..\..\..\src\lib\Dotnet\Dotnet.csproj" />
   </ItemGroup>
 
+  <!-- include data folder -->
+  <ItemGroup>
+    <Content Include="data/access.token" >
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+
+  </ItemGroup>
+
 </Project>
