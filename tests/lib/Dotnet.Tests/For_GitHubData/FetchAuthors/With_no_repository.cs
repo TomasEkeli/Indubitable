@@ -1,10 +1,12 @@
 using System.IO;
+using System.Net.Http;
 
 using Octokit;
 
 namespace Dotnet.Tests.For_GitHubData.FetchAuthors;
 
 [TestFixture]
+[Category("Integration")]
 public class With_no_repository
 {
     IEnumerable<Author> _authors;
@@ -13,11 +15,13 @@ public class With_no_repository
     public async Task SetUp()
     {
         // read token from file
-        var token = await File.ReadAllTextAsync("data/access.token");
+        var token = File.Exists("data/access.token") ?
+            await File.ReadAllTextAsync("data/access.token")
+            : "";
 
         if (string.IsNullOrEmpty(token))
         {
-            var tokenInteraction = new OAuthTokenInteraction();
+            var tokenInteraction = new OAuthTokenInteraction(new HttpClient());
 
             var verification = await tokenInteraction.RequestDeviceVerificationCode(
                 clientId: "2c751fe4a634018d792d"

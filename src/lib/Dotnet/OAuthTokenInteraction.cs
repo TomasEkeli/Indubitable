@@ -6,23 +6,23 @@ public class OAuthTokenInteraction
 {
     readonly HttpClient _client;
 
-    public OAuthTokenInteraction()
+    public OAuthTokenInteraction(HttpClient client)
     {
-        _client = new HttpClient
-        {
-            BaseAddress = new Uri("https://github.com/"),
-            DefaultRequestHeaders =
-            {
-                { "User-Agent", "Indubitable.Tests" },
-                { "Accept", "application/json" }
-            }
-        };
+        _client = client;
+
+        _client.BaseAddress = new Uri("https://github.com/");
+        _client.DefaultRequestHeaders.Add("User-Agent", "Indubitable");
+        _client.DefaultRequestHeaders.Add("Accept", "application/json");
     }
 
     public async Task<DeviceVerification?> RequestDeviceVerificationCode(
         string clientId,
         CancellationToken cancellationToken = default)
     {
+        if (string.IsNullOrEmpty(clientId))
+        {
+            return null;
+        }
         var deviceResponse = await _client.PostAsJsonAsync(
             "https://github.com/login/device/code",
             new
