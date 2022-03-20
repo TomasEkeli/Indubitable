@@ -53,7 +53,7 @@ public class With_several_dependencies
                 },
             });
 
-        var dataFetcher = new NugetOrgDataMetadataFetcher(nugetOrgData);
+        var dataFetcher = new NugetOrgDataMetadata(nugetOrgData);
 
         _dependencies = await dataFetcher.FetchMetadataFor(
             new List<DependencyWithLocation>()

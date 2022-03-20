@@ -1,14 +1,10 @@
-using NuGet.Common;
-using NuGet.Protocol;
-using NuGet.Protocol.Core.Types;
-
 namespace Dotnet;
 
-public class NugetOrgDataMetadataFetcher
+public class NugetOrgDataMetadata
 {
     readonly INugetOrgData _nugetOrgData;
 
-    public NugetOrgDataMetadataFetcher(INugetOrgData nugetOrgData)
+    public NugetOrgDataMetadata(INugetOrgData nugetOrgData)
     {
         _nugetOrgData = nugetOrgData;
     }

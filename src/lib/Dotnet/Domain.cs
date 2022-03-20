@@ -43,6 +43,5 @@ public record Dependency(
         Authors);
 
 
-
 public record Owner(string Name);
 public record Author(string Name);
