@@ -17,7 +17,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/src/cli/cli.csproj",
+                "${workspaceFolder}/src/CLI/CLI.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -31,7 +31,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/src/cli/cli.csproj"
+                "${workspaceFolder}/src/CLI/CLI.csproj"
             ],
             "problemMatcher": "$msCompile"
         },
@@ -41,7 +41,7 @@
             "type": "process",
             "isTestCommand": true,
             "options": {
-                "cwd": "${workspaceFolder}/tests/lib/dotnet.tests",
+                "cwd": "${workspaceFolder}/tests/lib/Dotnet.Tests",
                 "env": {
                     "DOTNET_CLI_TELEMETRY_OPTOUT": "1"
                 }
