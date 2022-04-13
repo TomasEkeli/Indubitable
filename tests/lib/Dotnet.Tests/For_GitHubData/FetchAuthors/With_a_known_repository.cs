@@ -7,7 +7,7 @@ namespace Dotnet.Tests.For_GitHubData.FetchAuthors;
 
 [TestFixture]
 [Category("Integration")]
-public class With_no_repository
+public class With_a_known_repository
 {
     IEnumerable<Author> _authors;
 
@@ -36,14 +36,8 @@ public class With_no_repository
 
             var tokenResult = await tokenInteraction.RequestToken(verification);
 
-            if (tokenResult?.success == false)
-            {
-                throw new Exception("failed to get token");
-            }
-            else
-            {
-                token = tokenResult.access_token;
-            }
+            token = tokenResult?.success == false
+                ? throw new Exception("failed to get token") : tokenResult.access_token;
             await File.WriteAllTextAsync("data/access.token", token);
         }
 
@@ -61,4 +55,28 @@ public class With_no_repository
     [Test]
     [Category("Integration")]
     public void There_are_authors_of_the_well_known_repository() => _authors.Any().ShouldBeTrue();
+}
+
+[TestFixture]
+public class With_a_url_that_does_not_go_to_github
+{
+    IEnumerable<Author> _authors;
+
+    [OneTimeSetUp]
+    public async Task SetUp()
+    {
+        var client = Substitute.For<IGitHubClient>();
+
+        client
+            .Miscellaneous
+            .GetRateLimits()
+            .Returns(
+                new MiscellaneousRateLimit(new(), new RateLimit(1, 1, 1))
+            );
+
+        _authors = await new GitHubData(client).FetchAuthors(new Uri("https://not.a.repo"));
+    }
+
+    [Test]
+    public void There_are_no_authors() => _authors.Any().ShouldBeFalse();
 }

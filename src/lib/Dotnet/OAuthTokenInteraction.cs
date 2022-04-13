@@ -115,6 +115,7 @@ public class OAuthTokenInteraction
     }
 }
 
+# pragma warning disable IDE1006 // Naming Styles
 public record DeviceVerification(
     string device_code,
     string user_code,
@@ -133,3 +134,4 @@ public record TokenResult(
     string? error = null,
     string? error_description = null
 );
+# pragma warning restore IDE1006 // Naming Styles

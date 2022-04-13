@@ -2,11 +2,11 @@ namespace Dotnet;
 
 public class NugetNuspecData
 {
-    readonly INugetOrgData _nugetOrgData;
+    // readonly INugetOrgData _nugetOrgData;
 
     public NugetNuspecData(INugetOrgData nugetOrgData)
     {
-        _nugetOrgData = nugetOrgData;
+        // _nugetOrgData = nugetOrgData;
     }
 
     public IEnumerable<Dependency> GetSourceUrl(
